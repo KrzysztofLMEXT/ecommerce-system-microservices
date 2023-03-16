@@ -9,6 +9,7 @@
         <version>1.0</version>
     </parent>
 
+    <groupId>com.ecommerce.microservices.container</groupId>
     <artifactId>inventory-container</artifactId>
 
     <dependencies>

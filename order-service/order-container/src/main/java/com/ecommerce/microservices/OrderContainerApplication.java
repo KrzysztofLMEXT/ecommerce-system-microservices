@@ -14,5 +14,4 @@ public class OrderContainerApplication {
     public OrderDomainService orderDomainService(){
         return new OrderDomainServiceImpl();
     }
-
 }

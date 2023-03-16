@@ -9,4 +9,9 @@ public class InventoryContainerApplication {
     public static void main(String[] args) {
         SpringApplication.run(InventoryContainerApplication.class, args);
     }
+
+//    @Bean
+//    public OrderDomainService orderDomainService(){
+//        return new OrderDomainServiceImpl();
+//    }
 }

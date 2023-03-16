@@ -9,5 +9,5 @@ import lombok.Setter;
 @Builder
 public class InventoryResponse {
     private String skuCode;
-    private Long quantity;
+    private boolean isInStock;
 }

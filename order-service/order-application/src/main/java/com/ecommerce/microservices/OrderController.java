@@ -4,14 +4,15 @@ import com.ecommerce.microservices.dto.CreateOrderCommand;
 import com.ecommerce.microservices.dto.CreateOrderResponse;
 import com.ecommerce.microservices.dto.OrderItemCommand;
 import com.ecommerce.microservices.dto.OrderResponse;
-import com.ecommerce.microservices.mapper.OrderDataMapper;
 import com.ecommerce.microservices.model.Order;
-import com.ecommerce.microservices.ports.OrderAppService;
 import com.ecommerce.microservices.valueobject.OrderId;
+import com.ecommerce.microservices.mapper.OrderDataMapper;
+import com.ecommerce.microservices.ports.OrderAppService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -26,8 +27,19 @@ public class OrderController {
     private final OrderAppService orderAppService;
     private final OrderDataMapper orderDataMapper;
 
+    private final WebClient.Builder webClientBuilder;
+
     @PostMapping
     public ResponseEntity<CreateOrderResponse> createOrder(@RequestBody CreateOrderCommand createOrderCommand){
+
+        InventoryResponse[] inventoryResponse = webClientBuilder.build()
+                .get()
+                .uri("http://inventory-service/inventory?skuCode=12345")
+                .retrieve()
+                .bodyToMono(InventoryResponse[].class)
+                .block();
+
+        // HIT to inventory servajs
         CreateOrderResponse response = orderAppService.createOrder(createOrderCommand);
         return ResponseEntity.ok(response);
     }

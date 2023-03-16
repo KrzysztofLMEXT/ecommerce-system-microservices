@@ -1,5 +1,8 @@
 spring:
   application:
-    name: order
+    name: order-service
   config:
     import: configserver:http://localhost:8081
+  cloud:
+    config:
+      name: order
