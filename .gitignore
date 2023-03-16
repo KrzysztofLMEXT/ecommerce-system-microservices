@@ -1,0 +1,7 @@
+target
+.idea
+order-service/order-application/target
+order-service/order-container/target
+order-service/order-domain/order-app-service/target
+order-service/order-domain/order-domain-model/target
+order-service/order-infrastructure/target

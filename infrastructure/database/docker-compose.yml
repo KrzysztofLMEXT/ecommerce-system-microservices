@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  postgres-order-db:
+    container_name: postgres-order
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: order-service
+    ports:
+      - "5432:5432"
+  postgres-inventory-db:
+    container_name: postgres-inventory
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: inventory-service
+#    expose:
+#      - "5433"
+    ports:
+      - "5433:5432"
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"

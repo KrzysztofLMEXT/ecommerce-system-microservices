@@ -1,0 +1,15 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: configserver
+  profile:
+    native
+  profiles:
+    default: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config
