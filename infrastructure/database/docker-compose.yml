@@ -22,6 +22,18 @@ services:
 #      - "5433"
     ports:
       - "5433:5432"
+  postgres-payment-db:
+    container_name: postgres-payment
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: payment-service
+    #    expose:
+    #      - "5433"
+    ports:
+      - "5434:5432"
   pgadmin:
     container_name: pgadmin4_container
     image: dpage/pgadmin4
